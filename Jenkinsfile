@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         REGISTRY = "k8s-vga-worker1:5000"
-        IMAGE_NAME = "team1-app-kyn"
+        IMAGE_NAME = "team1-app-jenkins-kyn"
         IMAGE_TAG = "latest"
         NAMESPACE = "group1-team1"
     }
