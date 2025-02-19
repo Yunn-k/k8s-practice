@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: team1-springboot-deployment
+  name: team1-springboot-deployment-jenkins-kyn
   namespace: group1-team1  # MySQL과 같은 네임스페이스
   labels:
-    app: springboot
+    app: team1-springboot-deployment-jenkins-kyn
 spec:
   replicas: 1  # 원하는 만큼 설정 가능
   selector:
     matchLabels:
-      app: springboot
+      app: team1-springboot-deployment-jenkins-kyn
   template:
     metadata:
       labels:
-        app: springboot
+        app: team1-springboot-deployment-jenkins-kyn
     spec:
       containers:
-      - name: springboot
-        image: my-springboot-app:latest  # 👉 미리 빌드한 Docker 이미지 사용
+      - name: springbootteam1-springboot-deployment-jenkins-kyn
+        image: k8s-vga-worker1:5000/team1-springboot-deployment-jenkins:latest  # 👉 미리 빌드한 Docker 이미지 사용
         ports:
         - containerPort: 8080
         env:
