@@ -16,7 +16,7 @@ spec:
         app: team1-springboot-deployment-jenkins-kyn
     spec:
       containers:
-      - name: springbootteam1-springboot-deployment-jenkins-kyn
+      - name: team1-springboot-deployment-jenkins-kyn
         image: k8s-vga-worker1:5000/team1-springboot-deployment-jenkins:latest  # 👉 미리 빌드한 Docker 이미지 사용
         ports:
         - containerPort: 8080
