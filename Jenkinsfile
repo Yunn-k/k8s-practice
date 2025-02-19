@@ -1,14 +1,14 @@
 pipeline {
     agent any
     environment {
+        REGISTRY = "k8s-vga-worker1:5000"
         GIT_REPO = 'https://github.com/Yunn-k/k8s-practice.git'
         GIT_BRANCH = 'main'
-        REGISTRY = "k8s-vga-worker1:5000"
-        IMAGE_NAME = "team1-app-jenkins-kyn"
+        IMAGE_NAME = "team1-springboot-deployment-jenkins-kyn"
         IMAGE_TAG = "latest"
         NAMESPACE = "group1-team1"
-        JAVA_HOME = "/home/eva/user/yoon/edu/jdk-21.0.5"
-        PATH = "${JAVA_HOME}/bin:${PATH}"
+        JAVA_HOME = "/usr/local/java21"
+	    PATH = "${JAVA_HOME}/bin:${PATH}"
     }
     stages {
         stage('Checkout') {
@@ -63,7 +63,7 @@ pipeline {
             steps {
                 script {
                     // Kubenetes에서 특정 Deployment의 컨테이너 이미지를 업데이트 (아래 이름은 중복되지 않게 주의하여 지정, deployment, selector 이름으로)
-                    sh "kubectl set image deployment/team1-springboot-deployment springboot=${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} --namespace=${NAMESPACE}"
+                    sh "kubectl set image deployment/team1-springboot-deployment team1-springboot-deployment-jenkins-kyn=${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} --namespace=${NAMESPACE}"
                 }
             }
         }
