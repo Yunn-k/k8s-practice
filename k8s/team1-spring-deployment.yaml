@@ -7,7 +7,7 @@ metadata:
     app: springboot
 spec:
   replicas: 1  # 원하는 만큼 설정 가능
-  selector
+  selecto:
     matchLabels:
       app: springboot
   template:
