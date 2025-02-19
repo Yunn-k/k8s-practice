@@ -7,7 +7,7 @@ pipeline {
         IMAGE_NAME = "team1-app-jenkins-kyn"
         IMAGE_TAG = "latest"
         NAMESPACE = "group1-team1"
-        JAVA_HOME = "/jdk-21.0.5"
+        JAVA_HOME = "/home/eva/user/yoon/edu/jdk-21.0.5"
         PATH = "${JAVA_HOME}/bin:${PATH}"
     }
     stages {
