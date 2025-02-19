@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: team1-springboot-deployment
+  namespace: group1-team1  # MySQL과 같은 네임스페이스
+  labels:
+    app: springboot
+spec:
+  replicas: 1  # 원하는 만큼 설정 가능
+  selector
+    matchLabels:
+      app: springboot
+  template:
+    metadata:
+      labels:
+        app: springboot
+    spec:
+      containers:
+      - name: springboot
+        image: my-springboot-app:latest  # 👉 미리 빌드한 Docker 이미지 사용
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:mysql://team1-mysql-service.group1-team1.svc.cluster.local:3306/testdb"
+        - name: SPRING_DATASOURCE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-user
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-password
