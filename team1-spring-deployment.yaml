@@ -22,12 +22,6 @@ spec:
         - name: SPRING_DATASOURCE_URL
           value: "jdbc:mysql://team1-mysql-service.group1-team1.svc.cluster.local:3306/testdb"
         - name: SPRING_DATASOURCE_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secret
-              key: mysql-user
+          value: "testuser"
         - name: SPRING_DATASOURCE_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secret
-              key: mysql-password
+          value: "testpassword"
