@@ -1,19 +1,29 @@
 pipeline {
     agent any
     environment {
+        GIT_REPO = 'https://github.com/Yunn-k/k8s-practice.git'
+        GIT_BRANCH = 'main'
         REGISTRY = "k8s-vga-worker1:5000"
         IMAGE_NAME = "team1-app-jenkins-kyn"
         IMAGE_TAG = "latest"
         NAMESPACE = "group1-team1"
+        JAVA_HOME = "/jdk-21.0.5"
+        PATH = "${JAVA_HOME}/bin:${PATH}"
     }
     stages {
         stage('Checkout') {
             steps {
                 // Git 저장소에서 소스 코드 체크아웃 (branch 지정 : 본인 repository의 branch 이름으로 설정)
-                git branch: 'main', url: 'https://github.com/Yunn-k/k8s-practice.git'
+                git branch: "${GIT_BRANCH}", url: "${GIT_REPO}"
             }
         }
-        stage('Build with Gradle') {
+        stage('checkJava') {
+             steps {
+                echo "Using JAVA_HOME=${JAVA_HOME}"
+                sh 'java -version'
+            }
+        }
+        stage('Build with Maven') {
             steps {
                 script {
                     // Gradle 실행권한
