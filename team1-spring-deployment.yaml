@@ -5,7 +5,7 @@ metadata:
   namespace: group1-team1  # MySQL과 같은 네임스페이스
 spec:
   replicas: 1  # 원하는 만큼 설정 가능
-  selecto:
+  selector:
     matchLabels:
       app: team1-springboot-deployment-jenkins-kyn
   template:
